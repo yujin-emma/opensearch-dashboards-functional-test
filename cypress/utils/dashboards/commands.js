@@ -6,6 +6,8 @@
 import './vis_builder/commands';
 import './vis_type_table/commands';
 import './vis-augmenter/commands';
+import './vis_type_vega/commands';
+import './vis_type_tsvb/commands';
 import './data_explorer/commands';
 
 Cypress.Commands.add('waitForLoader', () => {
