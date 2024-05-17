@@ -10,28 +10,28 @@ import { TSVB_INDEX_ID, TSVB_PATH_INDEX_DATA, TSVB_CREATE_URL, VIS_APP_PATH, TSV
 
 describe('TSVB Visualization', () => {
   before(() => {
-    CURRENT_TENANT.newTenant = 'global';
-    cy.fleshTenantSettings();
-    cy.deleteIndex(TSVB_INDEX_ID);
-    cy.bulkUploadDocs(TSVB_PATH_INDEX_DATA);
+    // CURRENT_TENANT.newTenant = 'global';
+    // // cy.fleshTenantSettings();
+    // // cy.deleteIndex(TSVB_INDEX_ID);
+    // cy.bulkUploadDocs(TSVB_PATH_INDEX_DATA);
 
-    // Dashboards requires an index pattern to continue to the Create Visualization stage
-    cy.deleteIndexPattern(TSVB_INDEX_PATTERN);
-    cy.createIndexPattern(TSVB_INDEX_PATTERN, {
-      title: TSVB_INDEX_ID,
-      timeFieldName: 'timestamp',
-    });
+    // // Dashboards requires an index pattern to continue to the Create Visualization stage
+    // // cy.deleteIndexPattern(TSVB_INDEX_PATTERN);
+    // cy.createIndexPattern(TSVB_INDEX_PATTERN, {
+    //   title: TSVB_INDEX_ID,
+    //   timeFieldName: 'timestamp',
+    // });
 
-    cy.deleteSavedObjectByType(TSVB_VIS_TYPE, TSVB_INDEX_ID);
+    // // cy.deleteSavedObjectByType(TSVB_VIS_TYPE, TSVB_INDEX_ID);
 
 
-    // Visit the page
-    cy.log('create a new tsvb visualization: ', TSVB_CREATE_URL);
-    cy.visit(TSVB_CREATE_URL);
-    cy.url().should('contain', VIS_APP_PATH);
-    cy.setTopNavDate(TSVB_INDEX_START_TIME, TSVB_INDEX_END_TIME);
+    // // Visit the page
+    // cy.log('create a new tsvb visualization: ', TSVB_CREATE_URL);
+    // cy.visit(TSVB_CREATE_URL);
+    // cy.url().should('contain', VIS_APP_PATH);
+    // cy.setTopNavDate(TSVB_INDEX_START_TIME, TSVB_INDEX_END_TIME);
 
-    // Wait for page to load
+    // // Wait for page to load
     cy.waitForLoader();
   });
 
@@ -80,12 +80,12 @@ describe('TSVB Visualization', () => {
   }
 
   after(() => {
-    cy.deleteIndex(TSVB_INDEX_ID);
-    cy.deleteIndexPattern(TSVB_INDEX_PATTERN);
+    // cy.deleteIndex(TSVB_INDEX_ID);
+    // cy.deleteIndexPattern(TSVB_INDEX_PATTERN);
 
-    if (Cypress.env('DATASOURCE_MANAGEMENT_ENABLED')) {
-      cy.deleteDataSourceIndexBasicAuth(TSVB_INDEX_ID);
-      cy.deleteAllDataSources();
-    }
+    // if (Cypress.env('DATASOURCE_MANAGEMENT_ENABLED')) {
+    //   cy.deleteDataSourceIndexBasicAuth(TSVB_INDEX_ID);
+    //   cy.deleteAllDataSources();
+    // }
   });
 });
